@@ -49,4 +49,5 @@ app.get("/", (req, res) => {
 // httpServer.listen(process.env.PORT, () => {
 //   console.log(`serving on port ${process.env.PORT}`);
 // });
-export default serverless(app);
+app.listen(process.env.PORT)
+export default app;
