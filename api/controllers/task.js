@@ -1,4 +1,4 @@
-import { connectedUsers } from "../index.js";
+// import { connectedUsers } from "../index.js";
 import { User, Task } from "./../db/model.js";
 
 export const getAllTasks = async (req, res) => {
@@ -21,12 +21,12 @@ export const createTaskForEmployee = async (req, res) => {
       dueDate,
     });
     await task.save();
-    const socketId = connectedUsers.get(id);
-    if (socketId) {
-      io.to(socketId).emit("taskAssigned", {
-        message: `You have been assigned a new task: ${task.title}`,
-      });
-    }
+    // const socketId = connectedUsers.get(id);
+    // if (socketId) {
+    //   io.to(socketId).emit("taskAssigned", {
+    //     message: `You have been assigned a new task: ${task.title}`,
+    //   });
+    // }
     return res.status(200).json({ msg: "task created and assigned", task });
   }
 };
@@ -70,13 +70,13 @@ export const updateProgress = async (req, res) => {
   if (!task) return res.status(404).json({ msg: "Task not found" });
   task.completed = !task.completed;
   await task.save();
-  if (task.completed) {
-    const socketId = connectedUsers.get(task.assignedTo);
-    if (socketId) {
-      io.to(socketId).emit("taskCompleted", {
-        message: `Task "${task.title}" has been completed by ${task.assignedTo}`,
-      });
-    }
-  }
+  // if (task.completed) {
+  //   const socketId = connectedUsers.get(task.assignedTo);
+  //   if (socketId) {
+  //     io.to(socketId).emit("taskCompleted", {
+  //       message: `Task "${task.title}" has been completed by ${task.assignedTo}`,
+  //     });
+  //   }
+  // }
   return res.json({ msg: "success", updated: task });
 };
