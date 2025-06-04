@@ -269,6 +269,12 @@ Authorization: <your_token>
 > should be implemented in the client side for notifications
 
 
+## 5. Bonus
+- have deployed the backend to vercel
+```
+https://backend-intern-assign-s7p3-git-main-hinatashoyo1s-projects.vercel.app/
+```
+> but since vercel doesnt allows stay alive connections (websockets), the socket.io logic has been commented out
 
 
 
